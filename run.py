@@ -3,7 +3,6 @@
 import sys
 import json
 
-sys.path.insert(0, 'src/data')
 from etl import *
 
 
