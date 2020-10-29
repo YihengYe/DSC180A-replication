@@ -55,3 +55,23 @@ def extracter(raw):
 
 
     return
+
+def ld_to_csv(txtpath):
+    '''
+    this code read txt files to csvs to store them at output path article by article
+
+    txtpath: the path which store the txtfiles
+    '''
+    outpath='data/csvs'
+    if not os.path.exists(outpath):
+        os.makedirs(outpath)
+    for txtname in os.listdir(txtpath):
+        txtroute=os.path.join(txtpath, txtname)
+        filename=txtname.split('.')[0]
+        filedir=os.path.join(outpath, filename)
+        if not os.path.exists(filedir):
+            os.makedirs(filedir)
+            with open(txtroute, 'r') as fh:
+                print('yes')
+
+    return

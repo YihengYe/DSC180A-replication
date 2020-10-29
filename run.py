@@ -3,7 +3,7 @@
 import sys
 import json
 
-from etl import donwload_data, extracter
+from etl import donwload_data, extracter, ld_to_csv
 
 
 
@@ -13,6 +13,7 @@ def main(targets):
             data_cfg=json.load(fh)
         donwload_data(data_cfg['links'], data_cfg['outpath'])
         extracter(data_cfg['outpath'])
+        ld_to_csv('data/unzipped')
     return
 
 
