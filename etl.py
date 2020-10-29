@@ -75,35 +75,49 @@ def ld_to_csv(txtpath):
             tables={}
             with open(txtroute, 'r') as fh:
                 lines=fh.readlines()
+                table={'article':[],'time':[], 'revert':[], 'version':[], 'user':[]} #initialize the dataframe
+                max_row=100000
+                rows=0
+                count=0
+                nowat=0
+                maxline=len(lines)
                 for line in lines:
                     content=line.strip()
                     if not '^^^' in content:
                         current=content
-                        tables[content]={'time':[], 'revert':[], 'version':[], 'user':[]} #create dict for every single article
+                        nowat +=1
                     else:
-                        unit=content.split(' ')
-                        time=unit[0][3:]
-                        revert=unit[1]
-                        version=unit[2]
-                        user=unit[3]
-                        tables[current]['time'].append(time)
-                        tables[current]['revert'].append(revert)
-                        tables[current]['version'].append(version)
-                        tables[current]['user'].append(user)
-            counter=0
-            for key in tables.keys():
-                keynew=re.sub('\W+', '', key)
-                if len(keynew)>=1:
-                    keyed=keynew+'.csv'
-                    keypath=os.path.join(filedir,keyed)
-                    keydf=pd.DataFrame(tables[key])
-                    try:
-                        keydf.to_csv(keypath, index=False)
-                        counter +=1
-                    except Exception as e:
-                        errorinfo='the title '+keynew+' has invalid character'
-                        print(errorinfo)
-            counter=str(counter)
-            info='Sucessfully store '+counter+" csvs from the "+filename
-            print(info)
+                        if rows<max_row and nowat<maxline:
+                            unit=content.split(' ')
+                            time=unit[0][3:]
+                            revert=unit[1]
+                            version=unit[2]
+                            user=unit[3]
+                            table['time'].append(time)
+                            table['revert'].append(revert)
+                            table['version'].append(version)
+                            table['user'].append(user)
+                            table['article'].append(current)
+                            rows +=1
+                            nowat +=1
+                        else:
+                            count +=1
+                            csvname=filename+'_'+str(count)+'.csv'
+                            the_df=pd.DataFrame(table)
+                            cvpath=os.path.join(filedir, csvname)
+                            the_df.to_csv(cvpath, index=False)
+                            rows=0
+                            table={'article':[],'time':[], 'revert':[], 'version':[], 'user':[]}
+                            unit=content.split(' ')
+                            time=unit[0][3:]
+                            revert=unit[1]
+                            version=unit[2]
+                            user=unit[3]
+                            table['time'].append(time)
+                            table['revert'].append(revert)
+                            table['version'].append(version)
+                            table['user'].append(user)
+                            table['article'].append(current)
+                            rows +=1
+                            nowat +=1
     return

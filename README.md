@@ -13,7 +13,7 @@ Requirements:
 
 Code, Purpose, and Guideline:
 
-- run.py: getting light-dump data and transfered them into csvs article by article from WikiWarMonitor(http://wwm.phy.bme.hu/), 
+- run.py: getting light-dump data and transfered them into csvs that are 100000 rows each from WikiWarMonitor(http://wwm.phy.bme.hu/), 
           use "python run.py data" (line inside the quotation marks) to run it. After running it, the zip files downloaded are 
           at data/raw, the unzipped text files are at data/unzipped, and the csvs are at the data/csvs, which contains files
           that named by every ~wiki.zip downloaded with their articles data in csv form.
