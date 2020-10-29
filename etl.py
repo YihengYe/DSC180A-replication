@@ -7,6 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import zipfile
+import re
 
 
 
@@ -91,15 +92,17 @@ def ld_to_csv(txtpath):
                         tables[current]['user'].append(user)
             counter=0
             for key in tables.keys():
-                keyed=key+'.csv'
-                keypath=os.path.join(filedir,keyed)
-                keydf=pd.DataFrame(tables[key])
-                try:
-                    keydf.to_csv(keypath, index=False)
-                    counter +=1
-                except Exception as e:
-                    errorinfo='the title '+key+' has invalid character'
-                    print(errorinfo)
+                keynew=re.sub('\W+', '', key)
+                if len(keynew)>=1:
+                    keyed=keynew+'.csv'
+                    keypath=os.path.join(filedir,keyed)
+                    keydf=pd.DataFrame(tables[key])
+                    try:
+                        keydf.to_csv(keypath, index=False)
+                        counter +=1
+                    except Exception as e:
+                        errorinfo='the title '+keynew+' has invalid character'
+                        print(errorinfo)
             counter=str(counter)
             info='Sucessfully store '+counter+" csvs from the "+filename
             print(info)
