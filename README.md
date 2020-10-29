@@ -33,4 +33,9 @@ Code, Purpose, and Guideline:
 
 - code in src/data: the source code to fulfill the functions about processing data. The current usable files are download.py(
                     download lightdump data to data/raw) and light_dump_to_csv.py(unzipp data and save them into csvs), and
-                    their are used in elt.py.
+                    their are used in elt.py
+
+# Responsibilities:
+- Yiheng Ye set up the strcture of the project and the structure of run.py. He also wrote download.py and light_dump_to_csv.py and put then into etl.py to download 
+    light-dump data and store them into the csv format.
+- Kai-Ling Peng provides some notebooks in reference of transforming xml data to light-dump data, she is also working on transforming xml to light-dump data.
