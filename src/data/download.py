@@ -21,7 +21,7 @@ def donwload_data(links, outpath):
             r=requests.get(link, outfile)
             with open(outfile, 'wb') as f:
                 f.write(r.content)
-        repo='Successfully download data from '+link+' at '+outfile
-        print(repo)
+            repo='Successfully download data from '+link+' at '+outfile
+            print(repo)
 
     return

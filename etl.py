@@ -5,7 +5,8 @@ this is the file to contain all process data source code
 import os
 import requests
 from bs4 import BeautifulSoup
-
+import pandas as pd
+import zipfile
 
 
 
@@ -25,7 +26,32 @@ def donwload_data(links, outpath):
             r=requests.get(link, outfile)
             with open(outfile, 'wb') as f:
                 f.write(r.content)
-        repo='Successfully download data from '+link+' at '+outfile
-        print(repo)
+            repo='Successfully download data from '+link+' at '+outfile
+            print(repo)
+
+    return
+
+
+def extracter(raw):
+    '''
+    this function take a file contains of .zip light_dump data and unzip them into txt
+
+    raw: the string path to open
+
+    '''
+    txtpath='data/unzipped'
+    if not os.path.exists(txtpath):
+        os.makedirs(txtpath)
+    for zipname in os.listdir(raw):
+        zipper=os.path.join(raw, zipname)
+        the_zip=zipfile.ZipFile(zipper)
+        for data in the_zip.namelist():
+            datafile=os.path.join(txtpath, data)
+            if not os.path.exists(datafile):
+                the_zip.extract(data, txtpath)
+                info='the data '+data+" has beeen store at "+txtpath
+                print(info)
+
+
 
     return

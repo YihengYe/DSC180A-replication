@@ -3,7 +3,7 @@
 import sys
 import json
 
-from etl import donwload_data
+from etl import donwload_data, extracter
 
 
 
@@ -12,6 +12,7 @@ def main(targets):
         with open('config/data-params.json') as fh:
             data_cfg=json.load(fh)
         donwload_data(data_cfg['links'], data_cfg['outpath'])
+        extracter(data_cfg['outpath'])
     return
 
 
