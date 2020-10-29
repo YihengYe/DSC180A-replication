@@ -3,14 +3,24 @@
 import sys
 import json
 
-from etl import donwload_data, extracter, ld_to_csv
-
+sys.path.insert(0, 'src/data')
+from etl import *
 
 
 def main(targets):
     if 'data' in targets:
+        
         with open('config/data-params.json') as fh:
             data_cfg=json.load(fh)
+            
+            
+        #process xml
+        pages = soupify_xml(data_cfg['xml_path'])
+        df = xml_to_df(pages)
+        
+        #convert xml to light dump
+        
+        #process light dump
         donwload_data(data_cfg['links'], data_cfg['outpath'])
         extracter(data_cfg['outpath'])
         ld_to_csv('data/unzipped')

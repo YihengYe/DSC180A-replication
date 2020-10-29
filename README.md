@@ -2,17 +2,22 @@
 
 This is the replication project for DSC180A, B03 GROUP4
 
-Project Team Member:
+Project Team Members:
 - Yiheng Ye, yiy291@ucsd.edu
 - Kai-Ling Peng, kap038@ucsd.edu
-
 
 Requirements:
 - python 3.8
 - pandas 1.1.0
 
-CSV structure:
-After using run.py, the csvs at data/csvs contains those coloumns: article (the article where edit happend), time , revert(0 means no revert, 1 means revert), version, and user (editor). Each contains 100000 rows for the sake of memory consumption. 
+CSV Structure:
+After running run.py, the CSV files at data/csvs contains the following coloumns: 
+- article: the article where edit happend
+- time: timestamp of edit
+- revert: 0 if not a revert, 1 if edit was a revert
+- version: index number of edit version, corresponds to original version if edit was a revert
+- user: author of the editor
+Each csv contains around 100000 rows for the sake of memory consumption. 
 
 Code, Purpose, and Guideline:
 
