@@ -39,9 +39,41 @@ def ld_to_csv(txtpath):
         txtroute=os.path.join(txtpath, txtname)
         filename=txtname.split('.')[0]
         filedir=os.path.join(outpath, filename)
-        if not os.path.exists(filedir):
+        if not os.path.exists(filedir):  #use a file to store all articles in this wiki
             os.makedirs(filedir)
+            tables={}
             with open(txtroute, 'r') as fh:
-                print('yes')
+                lines=fh.readlines()
+                for line in lines:
+                    content=line.strip()
+                    if not '^^^' in content:
+                        current=content
+                        tables[content]={'time':[], 'revert':[], 'version':[], 'user':[]} #create dict for every single article
+                    else:
+                        unit=content.split(' ')
+                        time=unit[0][3:]
+                        revert=unit[1]
+                        version=unit[2]
+                        user=unit[3]
+                        tables[current]['time'].append(time)
+                        tables[current]['revert'].append(revert)
+                        tables[current]['version'].append(version)
+                        tables[current]['user'].append(user)
+            counter=0
+            for key in tables.keys():
+                keyed=key+'.csv'
+                keypath=os.path.join(filedir,keyed)
+                keydf=pd.DataFrame(tables[key])
+                try:
+                    keydf.to_csv(keypath, index=False)
+                    counter +=1
+                except Exception as e:
+                    errorinfo='the title '+key+' has invalid character'
+                    print(errorinfo)
+            counter=str(counter)
+            info='Sucessfully store '+counter+" csvs from the "+filename
+            print(info)
+
+
 
     return
