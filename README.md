@@ -12,7 +12,7 @@ Requirements:
 - pandas 1.1.0
 
 CSV structure:
-the csvs at data/csvs contains those coloumns: article (the article where edit happend), time , revert(0 means no revert, 1 means revert), version, and user (editor). Each contains 100000 rows for the sake of memory consumption. 
+After using run.py, the csvs at data/csvs contains those coloumns: article (the article where edit happend), time , revert(0 means no revert, 1 means revert), version, and user (editor). Each contains 100000 rows for the sake of memory consumption. 
 
 Code, Purpose, and Guideline:
 
