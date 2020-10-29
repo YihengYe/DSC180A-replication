@@ -4,7 +4,7 @@ This is the replication project for DSC180A, B03 GROUP4
 
 Project Team Member:
 - Yiheng Ye, yiy291@ucsd.edu
-- Kai-Ling Peng, email
+- Kai-Ling Peng, kap038@ucsd.edu
 
 
 Requirements:
@@ -19,8 +19,10 @@ Code, Purpose, and Guideline:
           that named by every ~wiki.zip downloaded with their articles data in csv form.
 
 - elt.py: the library for the data pipeline, see the documentation for detailed functions of every function writtened. Basically
-          these functions are used to fulfill the job done in run.py
+          these functions are used to fulfill the job done in run.py.
 
-- config/data-params.json: it stores the links of the source data as well as the output path for raw data
+- config/data-params.json: it stores the links of the source data as well as the output path for raw data.
 
-- code in src/data the source code to fulfill the functions described in run.py, they are used in elt.py
+- code in src/data: the source code to fulfill the functions about processing data. The current usable files are download.py(
+                    download lightdump data to data/raw) and light_dump_to_csv.py(unzipp data and save them into csvs), and
+                    their are used in elt.py.
