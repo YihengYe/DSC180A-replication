@@ -11,6 +11,9 @@ Requirements:
 - python 3.8
 - pandas 1.1.0
 
+CSV structure:
+the csvs at data/csvs contains those coloumns: article (the article where edit happend), time , revert(0 means no revert, 1 means revert), version, and user (editor). Each contains 100000 rows for the sake of memory consumption. 
+
 Code, Purpose, and Guideline:
 
 - run.py: getting light-dump data and transfered them into csvs that are 100000 rows each from WikiWarMonitor(http://wwm.phy.bme.hu/), 
