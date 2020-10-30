@@ -34,7 +34,7 @@ def xml_to_df(pages):
     
     pages: list of xml data for each page
     '''
-    data = []
+    data = {}
     for page in pages:
         title = page.title.text
         revisions = page.findAll("revision")
@@ -47,13 +47,68 @@ def xml_to_df(pages):
             except: 
                 username = revision.contributor.ip.text
             text = revision.format.next_sibling.next_sibling.text
-            data.append([title, r_id, time, username, text])
+            if title in data:
+                data[title].append([title, r_id, time, username, text])
+            else:
+                data[title] = [[title, r_id, time, username, text]]
     
-    df = pd.DataFrame(data, 
-                      columns = ['title', 'id', 'time', 
-                                 'username', 'text'])
+    dframes = []
+    for page in data:
 
-    return df
+        df = pd.DataFrame(data[page], columns = ['title', 'id', 'time', 'username', 'text'])
+
+        hist = [] #history of text
+        version = [] #edit version
+        username = []
+        revert = [] #0 or 1
+        curr = 1 #to keep track of version
+
+        for idx, row in df.iterrows():
+            if row.text not in hist: # not a revert
+                hist.append(row.text)
+                version.append(curr)
+                username.append(row.username)
+                revert.append('0')
+                curr += 1
+            else: #is revert
+                temp = hist.index(row.text)
+                version.append(version[temp])
+                username.append(row.username)
+
+                #if self revert
+                if row.username == username[version[temp]]:
+                    revert.append('0')
+                else:
+                    revert.append('1')
+
+
+        df['version'] = version
+        df['revert'] = revert
+        dframes.append(df)
+
+    return dframes
+
+def xml_to_light_dump(dframes, outpath):
+    '''
+    Given a list of cleaned dataframes from xml data,
+    produces light dump file into data/raw
+    '''
+    if not os.path.exists(outpath):
+        os.makedirs(outpath)
+    light_dump = ''
+    for df in dframes:
+        title = df.title[0]
+        light_dump = light_dump + title + '\n'
+        for idx, row in df.iterrows():
+            line = '^^^_' + row.time + ' ' + row.revert + ' ' + str(row.version) + ' ' + row.username
+            light_dump = light_dump + line + '\n'
+    outfile = os.path.join(outpath, 'light_dump.txt')
+    with open(outfile, 'w') as f:
+        f.write(light_dump)
+    repo = 'XML Converted to light dump at ' + outfile
+    print(repo)
+    
+    return
 
 
 

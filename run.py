@@ -11,13 +11,11 @@ def main(targets):
         
         with open('config/data-params.json') as fh:
             data_cfg=json.load(fh)
-            
-        '''   
-        #process xml
+        
+        #xml to light dump
         pages = soupify_xml(data_cfg['xml_path'])
-        df = xml_to_df(pages)
-        '''
-        #convert xml to light dump
+        dframes = xml_to_df(pages)
+        xml_to_light_dump(dframes, 'data/unzipped')
         
         #process light dump
         donwload_data(data_cfg['links'], data_cfg['outpath'])
