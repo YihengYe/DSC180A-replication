@@ -34,9 +34,9 @@ Each csv contains around 100000 rows for the sake of memory consumption.
 - config/data-params.json: it stores the links of the source data as well as the output path for raw data.
 
 - code in src/data: the source code to fulfill the functions about processing data. The current usable files are
-                    xml_to_light_dump.py (turns xml into light dump data), download.py(
+                    xml_to_light_dump.py (turns xml into light dump data), download_ld_zip.py(
                     download lightdump data to data/raw), and light_dump_to_csv.py(unzipp data and save them into csvs).
 
 ## Responsibilities:
-- Yiheng Ye set up the structure of the project and the structure of run.py. He also wrote download.py and light_dump_to_csv.py and put then into etl.py to download light-dump data and store them into the csv format.
+- Yiheng Ye set up the structure of the project and the structure of run.py. He also wrote download_ld_zip.py and light_dump_to_csv.py and put then into etl.py to download light-dump data and store them into the csv format.
 - Kai-Ling Peng provided reference notebooks for processing light dump data. She wrote code for turning XML data into light dump text files (xml_to_light_dump.py).
