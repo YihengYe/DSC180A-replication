@@ -131,3 +131,7 @@ dmypy.json
 
 # data folder
 data/
+
+#softeware config
+.vscode
+.DS_Store
