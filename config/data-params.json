@@ -1,6 +1,6 @@
 {
     "xml_path":"data/raw/testdata/enwiki-20200101-page-meta-history2.xml-ptest",
     "ld_path":"data/raw/lightdump/zh_wiki.txt",
-    "links":["http://wwm.phy.bme.hu/LD/ld_zh_wiki.zip"],
+    "links":["http://wwm.phy.bme.hu/LD/ld_zh_wiki.zip","http://wwm.phy.bme.hu/LD/ld_en_wiki.zip"],
     "outpath":"data/raw"
 }
