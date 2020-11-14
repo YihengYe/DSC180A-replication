@@ -3,5 +3,5 @@
     "build": "run.py",
     "library": ["src","elt.py", "eda.py"],
     "notebook": ["notebooks/eda.ipynb"],
-    "targets": ["target1", "target2"] 
+    "targets": ["data", "eda", "mstats"] 
 }
