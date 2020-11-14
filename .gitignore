@@ -135,3 +135,6 @@ data/
 #softeware config
 .vscode
 .DS_Store
+
+#result folder
+result/

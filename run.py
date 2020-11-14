@@ -4,6 +4,7 @@ import sys
 import json
 
 from etl import *
+from eda import *
 
 
 def main(targets):
@@ -21,6 +22,19 @@ def main(targets):
         donwload_data(data_cfg['links'], data_cfg['outpath'])
         extracter(data_cfg['outpath'])
         ld_to_csv('data/unzipped')
+
+    if 'eda' in targets:
+        with open('config/eda-params.json') as fh:
+            eda_cfg=json.load(fh)
+            routes=get_csvs_route(eda_cfg['csv_path'])
+            for i in routes:
+                for j in eda_cfg['content']:
+                    generate_result(i,j)
+    
+    if 'mstats' in targets:
+        #calculate m stats here
+        pass
+
     return
 
 
