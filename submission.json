@@ -1,0 +1,7 @@
+{
+    "config": ["config/data-params.json", "config/eda-params.json"],
+    "build": "run.py",
+    "library": ["src","elt.py", "eda.py"],
+    "notebook": ["notebooks/eda.ipynb"],
+    "targets": ["target1", "target2"] 
+}
