@@ -37,6 +37,7 @@ def main(targets):
         with open('config/calculation-m-params.json') as fh:
             m_calc_cfg = json.load(fh)
             calculate_all_M(m_calc_cfg['in_fp'], m_calc_cfg['out_fp'])
+            generate_M_results(m_calc_cfg['out_fp'],m_calc_cfg['viz'])
 
     return
 

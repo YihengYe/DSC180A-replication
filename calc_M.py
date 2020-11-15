@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import os
 from collections import Counter
 
-#M STAT CALCULATION
+# M STAT CALCULATION: single article
 def calculate_M(title, edits):
     edits.reverse()
     
@@ -82,6 +82,7 @@ def calculate_M(title, edits):
     M *= E
     return M
 
+# M STAT CALCULATION: entire light dump
 def calculate_all_M(fp, outp):
     light_dump = []    
     counter =0
@@ -106,3 +107,41 @@ def calculate_all_M(fp, outp):
             if line[0] == '^': 
                 row = line[4:-1].split(' ')
                 light_dump.append(row)
+
+# EDA on M-stats
+def generate_M_results(in_fp, outfp):
+    
+    # TOP 10 
+    outp_top10 = outfp[0]
+    with open(in_fp, 'rb') as file:
+        data = []
+        for line in file:
+            try:
+                line = line.decode()
+                title, M = line.replace("\n", "").split(", ")
+                data.append([title, int(M)])
+            except:
+                continue
+
+    df = pd.DataFrame(data, columns = ['title', 'M'])
+    df_top10 = df.sort_values('M', ascending = False).reset_index(drop = True).head(10)
+    df_top10.to_csv(outp_top10, index = False)
+    
+    # M RATIO
+    outp_ratio = outfp[1]
+    ratio = [['M > 0', df[df.M > 0].count().iloc[0], df[df.M > 0].count().iloc[0] / len(df.M)] ]
+    ratio.append(['M = 0', df[df.M == 0].count().iloc[0], df[df.M == 0].count().iloc[0] / len(df.M)])
+    ratio = pd.DataFrame(data = ratio, columns = ['article M', 'frequency', 'proportion'])
+    ratio.to_csv(outp_ratio, index = False)
+    
+    # Histogram
+    outp_hist = outfp[2]
+    fig = df[df.M > 0].plot.hist(bins = 50).get_figure()
+    fig.savefig(outp_hist)
+
+    # Quantiles
+    outp_quant = outfp[3]
+
+    quant = df[df.M>0].quantile([0,0.25,0.5,0.75,0.9,0.99,0.995,1])
+    quant.to_csv(outp_quant)
+    
