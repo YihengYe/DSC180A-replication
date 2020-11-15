@@ -40,14 +40,20 @@ Each csv contains around 100000 rows for the sake of memory consumption.
 - eda.py: the library for data eda. see the documentation for detailed functions of every function writtened. Basically
           these functions are used to fulfill the job done in run.py.
 
+- calc_M.py: the library for calculating M-statistics from light dumps. These functions are used to calculate M statistics and
+             perform EDA on the calculated M results. 
+
 - config/data-params.json: it stores the links of the source data as well as the output path for raw data.
-- config/wda-params.json: it stores the links of the csv data as well as the output path for eda results.
+- config/eda-params.json: it stores the links of the csv data as well as the output path for eda results.
+- config/calculation-m-params.json: it stores the links of the input light dump data as well as the output path for eda results 
+                                    for M calculations.
 
 - code in src/data: the source code to fulfill the functions about processing data. The current usable files are
                     xml_to_light_dump.py (turns xml into light dump data), download_ld_zip.py(
-                    download lightdump data to data/raw), and light_dump_to_csv.py(unzipp data and save them into csvs),
-                    eda.py(fullfil the eda function described in run.py)
+                    download lightdump data to data/raw), light_dump_to_csv.py(unzipp data and save them into csvs),
+                    eda.py(fullfil the eda function described in run.py), and calc_M.py (to calculate M statistics and perform EDA 
+                    on calculated data.
 
 ## Responsibilities:
 - Yiheng Ye set up the structure of the project and the structure of run.py. He also wrote download_ld_zip.py and light_dump_to_csv.py and put then into etl.py to download light-dump data and store them into the csv format. After that, he writes eda code (eda.py) to perform data eda on csv files.
-- Kai-Ling Peng provided reference notebooks for processing light dump data. She wrote code for turning XML data into light dump text files (xml_to_light_dump.py).
+- Kai-Ling Peng provided reference notebooks for processing light dump data. She wrote code for turning XML data into light dump text files (xml_to_light_dump.py). She wrote code for calculating M-stats on Wikipedia light dump data and performed EDA on calculated M-statistics.

@@ -1,5 +1,5 @@
 {
-    "in_fp":"data/raw/lightdump/simple_wiki.txt",
+    "in_fp":"data/raw/lightdump/en_wiki.txt",
     "out_fp":"data/M_calc/M_calculation.txt",
     "viz":["data/M_calc/top10.csv","data/M_calc/ratio.csv", "data/M_calc/histogram.png", "data/M_calc/quantile.csv"]
 }
