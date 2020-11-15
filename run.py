@@ -5,6 +5,7 @@ import json
 
 from etl import *
 from eda import *
+from calc_M import *
 
 
 def main(targets):
@@ -33,10 +34,11 @@ def main(targets):
     
     if 'mstats' in targets:
         #calculate m stats here
-        pass
+        with open('config/calculation-m-params.json') as fh:
+            m_calc_cfg = json.load(fh)
+            calculate_all_M(m_calc_cfg['in_fp'], m_calc_cfg['out_fp'])
 
     return
-
 
 
 

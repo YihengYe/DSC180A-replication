@@ -1,0 +1,4 @@
+{
+    "in_fp":"data/raw/lightdump/simple_wiki.txt",
+    "out_fp":"data/M_calc/M_calculation.txt"
+}

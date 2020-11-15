@@ -1,7 +1,7 @@
 {
-    "config": ["config/data-params.json", "config/eda-params.json"],
+    "config": ["config/data-params.json", "config/eda-params.json", "config/calculation-m-params.json"],
     "build": "run.py",
-    "library": ["src","elt.py", "eda.py"],
+    "library": ["src","elt.py", "eda.py","calc_M.py"],
     "notebook": ["notebooks/eda.ipynb"],
     "targets": ["data", "eda", "mstats"] 
 }
