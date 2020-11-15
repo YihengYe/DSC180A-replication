@@ -173,7 +173,8 @@ def generate_result(road, content):
     combined_df.columns=[column1,column2]
     combined_df[column3]=combined_df[column2]/combined_df[column3]
     combined_df=combined_df.fillna(0)
-    output_path='result/eda'
+    routename=os.path.basename(os.path.normpath(road))
+    output_path='result/eda/'+routename
     if not os.path.exists(output_path):
         os.makedirs(output_path)
     # make description csv
