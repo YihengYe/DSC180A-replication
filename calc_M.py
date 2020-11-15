@@ -86,6 +86,9 @@ def calculate_M(title, edits):
 def calculate_all_M(fp, outp):
     light_dump = []    
     counter =0
+    outdir='data/M_calc'
+    if not os.path.exists(outdir):
+        os.makedirs(outdir)
     with open(fp, encoding = 'utf8') as file:
         title = ''
         for line in file:
