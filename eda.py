@@ -171,7 +171,7 @@ def generate_result(road, content):
     revert_series=pd.Series(revert)
     combined_df=pd.concat([edit_series,revert_series], axis=1)
     combined_df.columns=[column1,column2]
-    combined_df[column3]=combined_df[column2]/combined_df[column3]
+    combined_df[column3]=combined_df[column2]/combined_df[column1]
     combined_df=combined_df.fillna(0)
     routename=os.path.basename(os.path.normpath(road))
     output_path='result/eda/'+routename

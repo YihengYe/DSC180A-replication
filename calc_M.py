@@ -86,37 +86,36 @@ def calculate_M(title, edits):
 def calculate_all_M(fp, outp):
     light_dump = []    
     counter =0
-    outdir='data/M_calc'
-    if not os.path.exists(outdir):
-        os.makedirs(outdir)
+    if not os.path.exists(outp):
+        os.makedirs(outp)
     with open(fp, encoding = 'utf8') as file:
-        title = ''
-        for line in file:
+        with open(outp + '/M_calculation.txt', 'w') as f:
+            title = ''
+            for line in file:
 
-            #line is title
-            if line[0] != "^": 
-                if title != '':
-                    #write previous M to file
-                    with open(outp, 'a') as f:
+                #line is title
+                if line[0] != "^": 
+                    if title != '':
+                        #write previous M to file
                         M = calculate_M(title, light_dump)
                         f.write(title + ', ' + str(M) + '\n')
 
-                    #reset var, continue reading
-                    light_dump = []
+                        #reset var, continue reading
+                        light_dump = []
 
-                title = line.strip()
+                    title = line.strip()
 
-            #line is edit
-            if line[0] == '^': 
-                row = line[4:-1].split(' ')
-                light_dump.append(row)
+                #line is edit
+                if line[0] == '^': 
+                    row = line[4:-1].split(' ')
+                    light_dump.append(row)
 
 # EDA on M-stats
 def generate_M_results(in_fp, outfp):
     
     # TOP 10 
     outp_top10 = outfp[0]
-    with open(in_fp, 'rb') as file:
+    with open(in_fp + '/M_calculation.txt', 'rb') as file:
         data = []
         for line in file:
             try:

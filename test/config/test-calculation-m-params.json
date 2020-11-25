@@ -1,0 +1,5 @@
+{
+    "in_fp":"test/testdata/lightdump/testld.txt",
+    "out_fp":"data/M_calc",
+    "viz":["data/M_calc/top10.csv","data/M_calc/ratio.csv", "data/M_calc/histogram.png", "data/M_calc/quantile.csv"]
+}

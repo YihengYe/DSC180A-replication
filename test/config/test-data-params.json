@@ -1,0 +1,4 @@
+{
+    "infp":"test/testdata/lightdump",
+    "outfp":"data/csvs"
+}

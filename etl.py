@@ -134,14 +134,14 @@ def donwload_data(links, outpath):
     return
 
 
-def extracter(raw):
+def extracter(raw, txtpath='data/unzipped'):
     '''
     this function take a file contains of .zip light_dump data and unzip them into txt
 
     raw: the string path to open
 
     '''
-    txtpath='data/unzipped'
+#     txtpath='data/unzipped'
     if not os.path.exists(txtpath):
         os.makedirs(txtpath)
     for zipname in os.listdir(raw):
@@ -159,13 +159,13 @@ def extracter(raw):
 
     return
 
-def ld_to_csv(txtpath):
+def ld_to_csv(txtpath, outpath):
     '''
     this code read txt files to csvs to store them at output path article by article
 
     txtpath: the path which store the txtfiles
     '''
-    outpath='data/csvs'
+#     outpath='data/csvs'
     if not os.path.exists(outpath):
         os.makedirs(outpath)
     for txtname in os.listdir(txtpath):

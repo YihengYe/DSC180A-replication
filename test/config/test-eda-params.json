@@ -1,0 +1,5 @@
+{
+    "csv_path":"data/csvs",
+    "content":["bots", "day", "article", "user"]
+
+}

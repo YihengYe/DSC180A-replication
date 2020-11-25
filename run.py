@@ -38,6 +38,30 @@ def main(targets):
             m_calc_cfg = json.load(fh)
             calculate_all_M(m_calc_cfg['in_fp'], m_calc_cfg['out_fp'])
             generate_M_results(m_calc_cfg['out_fp'],m_calc_cfg['viz'])
+            
+    
+    if 'test' in targets:
+        #data
+        with open('test/config/test-data-params.json') as fh:
+            test_data_cfg=json.load(fh)
+            
+        #process light dump
+        ld_to_csv(test_data_cfg['infp'], test_data_cfg['outfp'])
+        
+        #eda
+        with open('test/config/test-eda-params.json') as fh:
+            test_eda_cfg=json.load(fh)
+            routes=get_csvs_route(test_eda_cfg['csv_path'])
+            for i in routes:
+                for j in test_eda_cfg['content']:
+                    generate_result(i,j)
+        
+        #m-stat
+        with open('test/config/test-calculation-m-params.json') as fh:
+            test_m_calc_cfg = json.load(fh)
+            calculate_all_M(test_m_calc_cfg['in_fp'], test_m_calc_cfg['out_fp'])
+            generate_M_results(test_m_calc_cfg['out_fp'],test_m_calc_cfg['viz'])
+        
 
     return
 
