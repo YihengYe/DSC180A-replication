@@ -38,7 +38,7 @@ def main(targets):
             m_calc_cfg = json.load(fh)
             calculate_all_M(m_calc_cfg['in_fp'], m_calc_cfg['out_fp'])
             generate_M_results(m_calc_cfg['out_fp'],m_calc_cfg['viz'])
-     if 'test' in targets:
+    if 'test' in targets:
         extracter('test/testdata')
         ld_to_csv('data/unzipped')
         print('finish testing target--data')
