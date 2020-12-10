@@ -187,6 +187,15 @@ def generate_result(road, content):
     combined_df[column1].describe().to_csv(outpath1)
     combined_df[column2].describe().to_csv(outpath2)
     combined_df[column3].describe().to_csv(outpath3)
+    #make top10 csv of edits and reverts
+    resulte=column1+"_top10.csv"
+    resultr=column2+"_top10.csv"
+    outpathe=os.path.join(output_path, resulte)
+    outpathr=os.path.join(output_path, resultr)
+    combined_df[column1].sort_values(ascending=False).head(10).to_csv(outpathe)
+    combined_df[column2].sort_values(ascending=False).head(10).to_csv(outpathr)
+
+
     #draw pictures,edit
     plt.figure()
     plt.plot(combined_df[column1])
