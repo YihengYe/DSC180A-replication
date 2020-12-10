@@ -171,7 +171,7 @@ def generate_result(road, content):
     revert_series=pd.Series(revert)
     combined_df=pd.concat([edit_series,revert_series], axis=1)
     combined_df.columns=[column1,column2]
-    combined_df[column3]=combined_df[column2]/combined_df[column3]
+    combined_df[column3]=combined_df[column2]/combined_df[column1]
     combined_df=combined_df.fillna(0)
     routename=os.path.basename(os.path.normpath(road))
     output_path='result/eda/'+routename
@@ -184,9 +184,9 @@ def generate_result(road, content):
     outpath1=os.path.join(output_path, result1)
     outpath2=os.path.join(output_path, result2)
     outpath3=os.path.join(output_path, result3)
-    combined_df[column1].describe().to_csv(outpath1, index=False)
-    combined_df[column2].describe().to_csv(outpath2, index=False)
-    combined_df[column3].describe().to_csv(outpath3, index=False)
+    combined_df[column1].describe().to_csv(outpath1)
+    combined_df[column2].describe().to_csv(outpath2)
+    combined_df[column3].describe().to_csv(outpath3)
     #draw pictures,edit
     plt.figure()
     plt.plot(combined_df[column1])
