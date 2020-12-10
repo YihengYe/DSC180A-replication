@@ -38,6 +38,20 @@ def main(targets):
             m_calc_cfg = json.load(fh)
             calculate_all_M(m_calc_cfg['in_fp'], m_calc_cfg['out_fp'])
             generate_M_results(m_calc_cfg['out_fp'],m_calc_cfg['viz'])
+     if 'test' in targets:
+        extracter('test/testdata')
+        ld_to_csv('data/unzipped')
+        print('finish testing target--data')
+        routes=get_csvs_route('data/csvs')
+        content=["bots", "day", "article", "user"]
+        for i in routes:
+            for j in content:
+                generate_result(i,j)
+        print('finish testing target--eda')
+        calculate_all_M('data/unzipped/test_wiki.txt', "data/M_calc/M_calculation.txt")
+        viz=["data/M_calc/top10.csv","data/M_calc/ratio.csv", "data/M_calc/histogram.png", "data/M_calc/quantile.csv"]
+        generate_M_results('data/M_calc/M_calculation.txt',viz)
+        print('finsish testing target--mstats')
 
     return
 
