@@ -50,7 +50,7 @@ def main(targets):
                     generate_result(i,j)
         print('finish testing target--eda')
         calculate_all_M('data/unzipped/test_wiki.txt', "data/M_calc/M_calculation.txt")
-        viz=["data/M_calc/top10.csv","data/M_calc/ratio.csv", "data/M_calc/histogram.png", "data/M_calc/quantile.csv"]
+        viz=["result/M_calc/top10.csv","result/M_calc/ratio.csv", "result/M_calc/histogram.png", "result/M_calc/quantile.csv"]
         generate_M_results('data/M_calc/M_calculation.txt',viz)
         print('finsish testing target--mstats')
 
