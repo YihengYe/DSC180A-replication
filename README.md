@@ -32,7 +32,9 @@ Each csv contains around 100000 rows for the sake of memory consumption.
           per specific group ('content') given (article,user, bots, day). Draws plots of edit frequency,revert frequency with "content" given.
           Draws histogram of revert/edit ration with "content" given.
 
-          If target='mstats':Generates M-statistic calculated by data downloaded
+          If target='mstats':Generates M-statistic calculated by data downloaded.
+
+          If target='test': Runs test program about data, eda and mstats with the testdata provided
 
 - elt.py: the library for the data pipeline, see the documentation for detailed functions of every function writtened. Basically
           these functions are used to fulfill the job done in run.py.
