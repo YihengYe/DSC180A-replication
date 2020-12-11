@@ -34,10 +34,14 @@ def main(targets):
     
     if 'mstats' in targets:
         #calculate m stats here
+        outdir='result/M_calc'
+        if not os.path.exists(outdir):
+            os.makedirs(outdir)
         with open('config/calculation-m-params.json') as fh:
             m_calc_cfg = json.load(fh)
             calculate_all_M(m_calc_cfg['in_fp'], m_calc_cfg['out_fp'])
             generate_M_results(m_calc_cfg['out_fp'],m_calc_cfg['viz'])
+    
     if 'test' in targets:
         extracter('test/testdata')
         ld_to_csv('data/unzipped')
@@ -49,6 +53,9 @@ def main(targets):
                 for j in content:
                     generate_result(i,j)
         print('finish testing target--eda')
+        outdir='result/M_calc'
+        if not os.path.exists(outdir):
+            os.makedirs(outdir)
         calculate_all_M('data/unzipped/test_wiki.txt', "data/M_calc/M_calculation.txt")
         viz=["result/M_calc/top10.csv","result/M_calc/ratio.csv", "result/M_calc/histogram.png", "result/M_calc/quantile.csv"]
         generate_M_results('data/M_calc/M_calculation.txt',viz)
